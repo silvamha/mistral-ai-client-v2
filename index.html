@@ -7,18 +7,10 @@
     <title>Simple UI Layout with Bulma</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            margin: 50px; /* Added 50px margin to the body */
-        }
-        .container {
-            margin: 0; /*Removed existing margin from container*/
-        }
-    </style>
 </head>
 
 <body>
-    <div class="container is-fluid box" style="border: 3px solid blue; padding: 20px;">
+    <div class="container is-fluid box" style="border: 3px solid blue; padding: 20px; margin: 20px;">
         <!-- AI and User Messages Box -->
         <div class="box" id="chat-box" style="border: none; padding: 20px; height: 400px; overflow-y: auto; margin-bottom: 20px;">
             <p class="title is-4">Chat Messages</p>
@@ -29,6 +21,11 @@
         <div class="box" style="border: 2px solid green; padding: 20px; margin-bottom: 20px;">
             <input class="input" type="text" id="user-message" placeholder="Type your message here..." style="width: 100%; resize: none;">
         </div>
+
+        <!-- System Instruction Box -->
+        <!-- <div class="box" style="border: 2px solid green; padding: 20px; margin-bottom: 20px;">
+            <input class="input" type="text" id="system-instruction" placeholder="Enter system instructions here..." style="width: 100%; resize: none;">
+        </div> -->
 
         <!-- Send Button and Load Document Button -->
         <div style="margin-top: 20px; display: flex; align-items: center;">
@@ -43,7 +40,8 @@
         </div>
     </div>
 
-<script src="main.js" type="module"></script>
+    <script type="module" src="./main.js"></script>
+    <script src="./system_instruction.js" type="module"></script>
 </body>
 
 </html>
