@@ -99,4 +99,9 @@ document.querySelector('#app').innerHTML = `
 
 setupCounter(document.querySelector('#counter'));
 
-console.log('Hello World!');
+const testFuntion = () => {
+  console.log('Hello World!');
+}
+
+testFuntion();
+
