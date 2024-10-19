@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple UI Layout with Bulma</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 50px; /* Added 50px margin to the body */
+        }
+        .container {
+            margin: 0; /*Removed existing margin from container*/
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container is-fluid box" style="border: 3px solid blue; padding: 20px;">
+        <!-- AI and User Messages Box -->
+        <div class="box" id="chat-box" style="border: none; padding: 20px; height: 400px; overflow-y: auto; margin-bottom: 20px;">
+            <p class="title is-4">Chat Messages</p>
+            <!-- AI and User Messages will be appended here -->
+        </div>
+
+        <!-- User-Assistant Interaction Box -->
+        <div class="box" style="border: 2px solid green; padding: 20px; margin-bottom: 20px;">
+            <input class="input" type="text" id="user-message" placeholder="Type your message here..." style="width: 100%; resize: none;">
+        </div>
+
+        <!-- Send Button and Load Document Button -->
+        <div style="margin-top: 20px; display: flex; align-items: center;">
+            <button class="button is-primary" id="send-button" style="margin-right: 10px;">Send</button>
+            <!-- Load Document Button -->
+            <button class="button is-secondary" id="load-document-button">
+                <span class="icon">
+                    <i class="fas fa-paperclip"></i>
+                </span>
+                <span>Load Document</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Simple JavaScript to demonstrate event handling
+        document.getElementById('send-button').addEventListener('click', function () {
+            const userMessage = document.getElementById('user-message').value;
+            const chatBox = document.getElementById('chat-box');
+
+            if (userMessage.trim()) {
+                // Create User Message Element
+                const userMessageElement = document.createElement('div');
+                userMessageElement.className = 'notification is-link is-light';
+                userMessageElement.style.marginBottom = '10px';
+                userMessageElement.innerHTML = `<strong>User:</strong> ${userMessage}`;
+
+                // Append User Message to Chat Box
+                chatBox.appendChild(userMessageElement);
+
+                // Create AI Response Element
+                const aiMessageElement = document.createElement('div');
+                aiMessageElement.className = 'notification is-info is-light';
+                aiMessageElement.style.marginBottom = '10px';
+                aiMessageElement.innerHTML = `<strong>Assistant:</strong> Assistant is thinking...`;
+
+                // Append AI Response to Chat Box
+                chatBox.appendChild(aiMessageElement);
+
+                // Clear the input box
+                document.getElementById('user-message').value = '';
+
+                // Simulate AI response after a short delay
+                setTimeout(() => {
+                    aiMessageElement.innerHTML = `<strong>Assistant:</strong> This is a simulated AI response.`;
+                }, 1000);
+            }
+        });
+
+        // Event to handle Load Document button click
+        document.getElementById('load-document-button').addEventListener('click', function () {
+            // Simulate opening a file dialog
+            const inputElement = document.createElement('input');
+            inputElement.type = 'file';
+            inputElement.style.display = 'none';
+            document.body.appendChild(inputElement);
+            inputElement.click();
+            inputElement.addEventListener('change', function () {
+                alert('File selected: ' + inputElement.files[0].name);
+                document.body.removeChild(inputElement);
+            });
+        });
+    </script>
+</body>
+
+</html>
