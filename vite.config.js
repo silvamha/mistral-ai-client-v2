@@ -13,3 +13,6 @@ export default defineConfig({
     'process.env': process.env,
   },
 });
+
+
+console.log('hello')
