@@ -15,4 +15,13 @@ export default defineConfig({
 });
 
 
-console.log('hello')
+// import { defineConfig } from 'vite';
+// import dotenv from 'dotenv';
+
+// dotenv.config();
+
+// export default defineConfig({
+//   server: {
+//     open: true, // Opens the browser when running the server
+//   },
+// });
