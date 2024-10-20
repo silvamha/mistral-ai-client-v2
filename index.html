@@ -2,46 +2,70 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple UI Layout with Bulma</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple UI Layout with Bulma</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body>
-    <div class="container is-fluid box" style="border: 3px solid blue; padding: 20px; margin: 20px;">
-        <!-- AI and User Messages Box -->
-        <div class="box" id="chat-box" style="border: none; padding: 20px; height: 400px; overflow-y: auto; margin-bottom: 20px;">
-            <p class="title is-4">Chat Messages</p>
-            <!-- AI and User Messages will be appended here -->
-        </div>
-
-        <!-- User-Assistant Interaction Box -->
-        <div class="box" style="border: 2px solid green; padding: 20px; margin-bottom: 20px;">
-            <input class="input" type="text" id="user-message" placeholder="Type your message here..." style="width: 100%; resize: none;">
-        </div>
-
-        <!-- System Instruction Box -->
-        <!-- <div class="box" style="border: 2px solid green; padding: 20px; margin-bottom: 20px;">
-            <input class="input" type="text" id="system-instruction" placeholder="Enter system instructions here..." style="width: 100%; resize: none;">
-        </div> -->
-
-        <!-- Send Button and Load Document Button -->
-        <div style="margin-top: 20px; display: flex; align-items: center;">
-            <button class="button is-primary" id="send-button" style="margin-right: 10px;">Send</button>
-            <!-- Load Document Button -->
-            <button class="button is-secondary" id="load-document-button">
-                <span class="icon">
-                    <i class="fas fa-paperclip"></i>
-                </span>
-                <span>Load Document</span>
-            </button>
-        </div>
+<body style="background-color: #f8f9fa;">
+  <div class="container is-fluid box" style="border: 3px solid #d3d3d3; padding: 20px; margin: 20px; width: calc(100% - 300px); margin-left: auto; margin-right: auto; display: block; box-shadow: 2px 2px 5px #888888;">
+    <!-- AI and User Messages Box -->
+    <div class="box" id="chat-box" style="border: none; padding: 20px; height: 400px; overflow-y: auto; margin-bottom: 20px;">
+      <p class="title is-4">Chat Messages</p>
+      <!-- AI and User Messages will be appended here -->
     </div>
 
-    <script type="module" src="./main.js"></script>
-    <script src="./system_instruction.js" type="module"></script>
+    <!-- User-Assistant Interaction Box -->
+    <div class="box" style="border: 2px solid green; padding: 20px; margin-bottom: 20px;">
+      <input class="input" type="text" id="user-message" placeholder="Type your message here..." style="width: 100%; resize: none;">
+    </div>
+
+
+    <!-- Send Button and Load Document Button -->
+    <div style="margin-top: 20px; display: flex; align-items: center;">
+      <button class="button is-primary" id="send-button" style="margin-right: 10px;">Send</button>
+      <!-- Load Document Button -->
+      <button class="button is-secondary" id="load-document-button">
+        <span class="icon">
+          <i class="fas fa-paperclip"></i>
+        </span>
+        <span>Load Document</span>
+      </button>
+    </div>
+    <!-- Buttons to clear LocalStorage, close page, and reload -->
+    <div style="margin-top: 5px;">
+      <button class="button is-danger" id="clearButton">Clear LocalStorage &amp; Chat</button>
+      <button class="button is-info" id="closeButton">Close Page</button>
+      <button class="button is-warning" id="reloadButton">Reload Page</button>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+  <script src="./system_instruction.js" type="module"></script>
+  <script src="./te-Hor.js" type="module"></script>
+  <script src="./summer-fun.js" type="module"></script>
+  <script src="./pipe-dreams.js" type="module"></script>
+  <script>
+    // Clear LocalStorage and chat box
+    document.getElementById('clearButton').addEventListener('click', () => {
+      localStorage.clear();
+      document.getElementById('chat-box').innerHTML = '<p class="title is-4">Chat Messages</p>'; // Clears only the chat box
+    });
+
+    // Close the page
+    document.getElementById('closeButton').addEventListener('click', () => {
+      window.close();
+    });
+
+    // Reload the page
+    document.getElementById('reloadButton').addEventListener('click', () => {
+      location.reload();
+    });
+  </script>
 </body>
 
 </html>
+```
+</write_to_file>
