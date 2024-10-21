@@ -8,10 +8,13 @@ const client = new Mistral({ apiKey: apiKey });
 // console.log(systemInstruction);
 
 // Load conversation context from LocalStorage if it exists
-let conversationContext = JSON.parse(localStorage.getItem('conversationContext')) || [
+let conversationContext = JSON.parse(
+  localStorage.getItem("conversationContext")
+) || [
   {
     role: "system",
     content: JSON.stringify(systemInstruction), // Convert to JSON string
+    temperature: 0.7,
   },
 ];
 
@@ -21,13 +24,19 @@ function validateContext(context) {
 
   context.forEach((msg, index) => {
     if (!msg || typeof msg !== "object") {
-      console.error(`Validation failed at index ${index}: Message is not a valid object.`);
+      console.error(
+        `Validation failed at index ${index}: Message is not a valid object.`
+      );
       isValid = false;
     } else if (!msg.role || typeof msg.role !== "string") {
-      console.error(`Validation failed at index ${index}: "role" is missing or is not a string.`);
+      console.error(
+        `Validation failed at index ${index}: "role" is missing or is not a string.`
+      );
       isValid = false;
     } else if (!msg.content || typeof msg.content !== "string") {
-      console.error(`Validation failed at index ${index}: "content" is missing or is not a string.`);
+      console.error(
+        `Validation failed at index ${index}: "content" is missing or is not a string.`
+      );
       isValid = false;
     }
   });
@@ -37,7 +46,10 @@ function validateContext(context) {
 
 // Save conversation context to LocalStorage
 function saveConversationContext() {
-  localStorage.setItem('conversationContext', JSON.stringify(conversationContext));
+  localStorage.setItem(
+    "conversationContext",
+    JSON.stringify(conversationContext)
+  );
 }
 
 // Handle Send Button Click
@@ -84,7 +96,6 @@ document
         const response = await client.chat.complete({
           model: "mistral-large-latest",
           messages: conversationContext,
-          temperature: .8,
         });
 
         // Update AI response with the result
@@ -109,11 +120,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Append each message in conversationContext to the chat box
   conversationContext.forEach((msg) => {
-    if (msg.role !== "system") { // Skip the system instruction from being displayed
+    if (msg.role !== "system") {
+      // Skip the system instruction from being displayed
       const messageElement = document.createElement("div");
-      messageElement.className = msg.role === "user" ? "notification is-link is-light" : "notification is-info is-light";
+      messageElement.className =
+        msg.role === "user"
+          ? "notification is-link is-light"
+          : "notification is-info is-light";
       messageElement.style.marginBottom = "10px";
-      messageElement.innerHTML = `<strong>${msg.role === "user" ? "User" : "Assistant"}:</strong> ${msg.content}`;
+      messageElement.innerHTML = `<strong>${
+        msg.role === "user" ? "User" : "Assistant"
+      }:</strong> ${msg.content}`;
       chatBox.appendChild(messageElement);
     }
   });
